@@ -1,0 +1,10 @@
+{
+  "people": [
+    { "name": "Ola", "role": "Engineer", "bio": "Builds playful systems." },
+    { "name": "Person 2", "role": "Designer", "bio": "Draws with vectors and code." },
+    { "name": "Person 3", "role": "Research", "bio": "Finds signals in the noise." },
+    { "name": "Person 4", "role": "Ops", "bio": "Keeps experiments alive." }
+  ]
+}
+
+

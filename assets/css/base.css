@@ -1,0 +1,44 @@
+/* Base styles and custom textures */
+
+:root {
+  --accent-red: #e52424;
+  --accent-blue: #3454f0;
+  --accent-yellow: #ffd700;
+  --support-mint: #d9f2ea;
+}
+
+html { scroll-behavior: smooth; }
+
+body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
+
+.handwritten { font-family: "Space Grotesk", Inter, sans-serif; letter-spacing: -0.02em; }
+
+.badge { border: 1px solid #0c0a09; background: #fff; padding: 0.25rem 0.5rem; box-shadow: 3px 3px 0 #0c0a09; }
+
+/* Texture layers */
+.texture-paper { background-image: url('/assets/img/textures/paper.webp'); background-size: cover; background-position: center; }
+.texture-brush { background-image: url('/assets/img/textures/brush.webp'); background-size: cover; background-position: top; opacity: 0.15; }
+
+/* Fallbacks if textures missing */
+.texture-paper:empty, .texture-brush:empty { background-image: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.03), transparent 60%); }
+
+/* Noise overlay (tiny CSS noise) */
+.noise-layer { background-image: url('/assets/img/textures/noise.png'); opacity: 0.08; }
+
+/* Hero animation cue */
+.hero-headline { text-transform: uppercase; }
+
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+/* Utility for scribble reveal */
+.scribble { position: relative; }
+.scribble::after { content: attr(data-note); position: absolute; left: 0; top: 100%; font-size: 0.8rem; transform: translateY(0.25rem) rotate(-1deg); background: #fff; border: 1px solid #0c0a09; padding: 0.15rem 0.35rem; box-shadow: 2px 2px 0 #0c0a09; opacity: 0; transition: opacity .2s ease; pointer-events: none; }
+.scribble:hover::after { opacity: 1; }
+
+/* Crown cursor hint (brief on scroll) */
+body.crown-cursor { cursor: url('/assets/svg/icons/crown-cursor.svg') 8 8, auto; }
+
+
