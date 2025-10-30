@@ -45,10 +45,14 @@
 
   function initFlicker() {
     const els = document.querySelectorAll('.flicker');
+    const beat = [90, 60, 120];
+    let i = 0;
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('on'), Math.random() * 120);
+          const delay = beat[i % beat.length];
+          i++;
+          setTimeout(() => e.target.classList.add('on'), delay);
         }
       });
     }, { threshold: 0.1 });
@@ -93,6 +97,87 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  }
+
+  function addCrownGrid() {
+    const grid = document.createElement('div');
+    grid.className = 'crown-grid';
+    document.body.appendChild(grid);
+    if (prefersReduced) return;
+    let t = 0;
+    const drift = () => {
+      t += 0.05;
+      grid.style.transform = `translate(${Math.sin(t) * 10}px, ${Math.cos(t/2) * 8}px)`;
+      requestAnimationFrame(drift);
+    };
+    requestAnimationFrame(drift);
+  }
+
+  function addCrossRefArrows() {
+    document.querySelectorAll('[data-xref]')
+      .forEach((el) => {
+        const img = document.createElement('img');
+        img.src = '/assets/svg/icons/arrow-curve.svg'; img.alt = '';
+        img.style.position = 'absolute'; img.style.right = '-10px'; img.style.top = '-22px';
+        img.style.width = '64px'; img.style.opacity = '0.7';
+        el.style.position = 'relative';
+        el.appendChild(img);
+      });
+  }
+
+  function addJitterFilter() {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('width', '0'); svg.setAttribute('height', '0');
+    svg.innerHTML = `<filter id="jitter"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="1" seed="2" result="noise"/><feDisplacementMap in2="noise" in="SourceGraphic" scale="1.2" xChannelSelector="R" yChannelSelector="G"/></filter>`;
+    svg.style.position = 'absolute'; svg.style.left = '-9999px';
+    document.body.appendChild(svg);
+    document.querySelectorAll('.jitter-hover').forEach((el)=>{
+      el.addEventListener('mouseenter', ()=> el.style.filter = 'url(#jitter)');
+      el.addEventListener('mouseleave', ()=> el.style.filter = 'none');
+    });
+  }
+
+  function addChalkTicks() {
+    document.querySelectorAll('h1, h2').forEach((h, idx) => {
+      const tick = document.createElement('div');
+      tick.textContent = '////';
+      tick.className = 'handwritten';
+      tick.style.fontSize = '14px';
+      tick.style.opacity = '0.5';
+      tick.style.marginLeft = '8px';
+      const wrap = document.createElement('span');
+      wrap.appendChild(tick);
+      h.appendChild(wrap);
+      if (h.parentElement && idx < 5) {
+        h.parentElement.classList.add('callout');
+        const num = document.createElement('span');
+        num.className = 'callout-num'; num.textContent = String(idx + 1);
+        h.parentElement.appendChild(num);
+      }
+    });
+  }
+
+  function randomAnnotations() {
+    const notes = [
+      'why not?', 'artifact', 'test this', 'keep it raw', 'sketch → ship', 'revise', 'mix', 'layer'
+    ];
+    const container = document.querySelector('main');
+    if (!container) return;
+    for (let i = 0; i < 4; i++) {
+      const n = document.createElement('span');
+      n.textContent = notes[Math.floor(Math.random() * notes.length)];
+      n.className = 'scatter';
+      n.style.left = (5 + Math.random() * 85) + '%';
+      n.style.top = (40 + Math.random() * 600) + 'px';
+      container.appendChild(n);
+    }
+  }
+
+  function randomizeTextures() {
+    const paper = document.querySelector('.texture-paper');
+    if (!paper) return;
+    const opacities = [0.45, 0.6, 0.3];
+    paper.style.opacity = String(opacities[Math.floor(Math.random()*opacities.length)]);
   }
 
   function initSmudgeTrail() {
@@ -237,6 +322,12 @@
     addBrushShards();
     initSmudgeTrail();
     tapeifyCards();
+    addCrownGrid();
+    addCrossRefArrows();
+    addJitterFilter();
+    addChalkTicks();
+    randomAnnotations();
+    randomizeTextures();
   }
 
   if (document.readyState === 'loading') {

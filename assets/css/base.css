@@ -1,4 +1,5 @@
 /* Base styles and custom textures */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
 
 :root {
   --accent-red: #e52424;
@@ -11,7 +12,7 @@ html { scroll-behavior: smooth; }
 
 body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji"; }
 
-.handwritten { font-family: "Space Grotesk", Inter, sans-serif; letter-spacing: -0.02em; }
+.handwritten { font-family: "Caveat", "Space Grotesk", Inter, sans-serif; letter-spacing: -0.01em; }
 
 .badge { border: 1px solid #0c0a09; background: #fff; padding: 0.25rem 0.5rem; box-shadow: 3px 3px 0 #0c0a09; }
 
@@ -71,5 +72,21 @@ body.crown-cursor { cursor: url('/assets/svg/icons/crown-cursor.svg') 8 8, auto;
 /* Brush shards container */
 .shards { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .shard { position: absolute; width: 160px; height: 80px; opacity: .22; }
+
+/* Paint swatch underline */
+.swatch { background: linear-gradient( to top, currentColor 0 38%, transparent 38% ); display: inline; padding: 0 .15rem; }
+.swatch.red { color: var(--accent-red); }
+.swatch.blue { color: var(--accent-blue); }
+.swatch.yellow { color: var(--accent-yellow); }
+
+/* Numbered callout */
+.callout { position: relative; }
+.callout .callout-num { position: absolute; left: -18px; top: -12px; font-size: 12px; background: #fff; border: 1px solid #0c0a09; border-radius: 9999px; width: 22px; height: 22px; display: grid; place-items: center; box-shadow: 2px 2px 0 #0c0a09; }
+
+/* Crown grid background */
+.crown-grid { position: fixed; inset: -20vh -10vw; z-index: -30; opacity: .06; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='60'%3E%3Cpath d='M10 40l2-14 9 7 7-10 12 17H10z' fill='none' stroke='%230c0a09' stroke-width='1'/%3E%3C/svg%3E"); background-size: 80px 60px; }
+
+/* Torn edge effect using mask */
+.torn { -webkit-mask-image: radial-gradient(circle at 0 0, transparent 12px, black 13px), radial-gradient(circle at 100% 0, transparent 12px, black 13px), radial-gradient(circle at 0 100%, transparent 12px, black 13px), radial-gradient(circle at 100% 100%, transparent 12px, black 13px); -webkit-mask-composite: source-over; mask-composite: add; }
 
 
