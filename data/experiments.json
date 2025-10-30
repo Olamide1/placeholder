@@ -5,7 +5,9 @@
     { "title": "Nomi", "summary": "Composable flows for real support.", "meta": "research", "url": "https://ai-customer-support-eosin.vercel.app/" },
     { "title": "PM Research Agents", "summary": "Agents that read, cluster, decide.", "meta": "lab", "url": "https://coverage.work" },
     { "title": "Tulum", "summary": "Alternative to Loom.", "meta": "lab", "url": "https://tulum-vids.netlify.app" },
-    { "title": "Tea Shop (Lagos)", "summary": "New-age tea studio exploration.", "meta": "coming soon", "url": "#" }
+    { "title": "Tea Shop (Lagos)", "summary": "New-age tea studio exploration.", "meta": "coming soon", "url": "#" },
+    { "title": "Documentorly", "summary": "AI-powered document generation.", "meta": "lab/collaboration", "url": "https://documentorly.com/" }
+
   ]
 }
 
