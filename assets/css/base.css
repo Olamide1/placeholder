@@ -15,6 +15,9 @@ body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Ro
 
 .badge { border: 1px solid #0c0a09; background: #fff; padding: 0.25rem 0.5rem; box-shadow: 3px 3px 0 #0c0a09; }
 
+/* Rough hand-drawn border utility using drop-shadow + jitter */
+.rough-border { border: 1px solid #0c0a09; box-shadow: 6px 6px 0 #0c0a09; transform: rotate(-0.2deg); }
+
 /* Texture layers */
 .texture-paper { background-image: url('/assets/img/textures/paper.webp'); background-size: cover; background-position: center; }
 .texture-brush { background-image: url('/assets/img/textures/brush.webp'); background-size: cover; background-position: top; opacity: 0.15; }
@@ -40,5 +43,33 @@ body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Ro
 
 /* Crown cursor hint (brief on scroll) */
 body.crown-cursor { cursor: url('/assets/svg/icons/crown-cursor.svg') 8 8, auto; }
+
+/* Cross-out + rewrite */
+.xout { position: relative; display: inline-block; }
+.xout::after { content: ''; position: absolute; left: -2%; right: -2%; top: 55%; height: 2px; background: #0c0a09; transform: rotate(-6deg); }
+.rewrite { position: relative; display: inline-block; background: var(--accent-yellow); color: #0c0a09; padding: 0 0.15rem; transform: rotate(-1deg); }
+
+/* Tape corners */
+.tape { position: absolute; width: 42px; height: 22px; opacity: 0.9; }
+.tape.tl { left: -10px; top: -12px; transform: rotate(-8deg); }
+.tape.tr { right: -12px; top: -10px; transform: rotate(6deg) scaleX(-1); }
+
+/* Rhythm grid (peeks on scroll) */
+.rhythm-grid { pointer-events: none; background-image: linear-gradient(rgba(12,10,9,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(12,10,9,0.05) 1px, transparent 1px); background-size: 24px 24px; opacity: 0; transition: opacity .25s ease; }
+.rhythm-grid.show { opacity: .18; }
+
+/* Flicker-in */
+.flicker { opacity: 0; transform: translateY(6px) rotate(-0.4deg); }
+.flicker.on { opacity: 1; transform: none; transition: opacity 120ms ease, transform 140ms ease; }
+
+/* Symbol scatter */
+.scatter { position: absolute; font-size: 12px; opacity: .35; mix-blend-mode: multiply; }
+.scatter.blue { color: var(--accent-blue); }
+.scatter.red { color: var(--accent-red); }
+.scatter.yellow { color: var(--accent-yellow); }
+
+/* Brush shards container */
+.shards { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.shard { position: absolute; width: 160px; height: 80px; opacity: .22; }
 
 

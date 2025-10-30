@@ -31,6 +31,107 @@
     onScroll();
   }
 
+  function initRhythmGrid() {
+    const grid = document.createElement('div');
+    grid.className = 'rhythm-grid absolute inset-0 -z-20';
+    document.body.appendChild(grid);
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      grid.classList.toggle('show', (y % 600) < 220);
+    };
+    if (!prefersReduced) window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  function initFlicker() {
+    const els = document.querySelectorAll('.flicker');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('on'), Math.random() * 120);
+        }
+      });
+    }, { threshold: 0.1 });
+    els.forEach((el) => io.observe(el));
+  }
+
+  function addSymbolScatter() {
+    const host = document.querySelector('header');
+    if (!host) return;
+    const symbols = ['AI', 'TEST', '?', 'EXP'];
+    symbols.forEach((s, i) => {
+      const span = document.createElement('span');
+      span.textContent = s;
+      span.className = `scatter ${['blue','red','yellow'][i % 3]}`;
+      span.style.left = (6 + i * 14) + '%';
+      span.style.top = (18 + i * 10) + 'px';
+      host.appendChild(span);
+    });
+  }
+
+  function addBrushShards() {
+    const main = document.querySelector('main');
+    if (!main) return;
+    const layer = document.createElement('div');
+    layer.className = 'shards -z-10';
+    for (let i = 0; i < 3; i++) {
+      const img = document.createElement('img');
+      img.src = '/assets/svg/icons/brush-shard.svg';
+      img.alt = '';
+      img.className = 'shard';
+      img.style.left = (i * 30 + 5) + '%';
+      img.style.top = (i * 80 + 40) + 'px';
+      layer.appendChild(img);
+    }
+    main.appendChild(layer);
+    if (prefersReduced) return;
+    const onScroll = () => {
+      const y = window.scrollY || 0;
+      layer.querySelectorAll('.shard').forEach((el, idx) => {
+        el.style.transform = `translateY(${(y * (0.03 + idx * 0.015))}px)`;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  function initSmudgeTrail() {
+    if (prefersReduced) return;
+    const hero = document.querySelector('header');
+    if (!hero) return;
+    const dots = [];
+    function addDot(x, y) {
+      const d = document.createElement('div');
+      d.style.position = 'fixed';
+      d.style.left = x + 'px';
+      d.style.top = y + 'px';
+      d.style.width = '6px';
+      d.style.height = '6px';
+      d.style.borderRadius = '50%';
+      d.style.background = 'rgba(12,10,9,0.12)';
+      d.style.pointerEvents = 'none';
+      d.style.zIndex = '5';
+      document.body.appendChild(d);
+      dots.push(d);
+      setTimeout(() => { d.style.transition = 'opacity 400ms'; d.style.opacity = '0'; }, 40);
+      setTimeout(() => d.remove(), 900);
+    }
+    hero.addEventListener('mousemove', (e) => addDot(e.clientX, e.clientY));
+  }
+
+  function tapeifyCards() {
+    document.querySelectorAll('#experiments-grid a, #experiments-list a, [data-tape]')
+      .forEach((card) => {
+        const tl = document.createElement('img');
+        tl.src = '/assets/svg/icons/tape.svg'; tl.alt = '';
+        tl.className = 'tape tl';
+        const tr = document.createElement('img');
+        tr.src = '/assets/svg/icons/tape.svg'; tr.alt = '';
+        tr.className = 'tape tr';
+        card.style.position = 'relative';
+        card.appendChild(tl); card.appendChild(tr);
+      });
+  }
   function briefCrownCursor() {
     let armed = true;
     const handler = () => {
@@ -126,10 +227,16 @@
   function init() {
     initLayerToggle();
     initParallax();
+    initRhythmGrid();
+    initFlicker();
     briefCrownCursor();
     populateExperiments();
     populateNow();
     initScribbleReveal();
+    addSymbolScatter();
+    addBrushShards();
+    initSmudgeTrail();
+    tapeifyCards();
   }
 
   if (document.readyState === 'loading') {

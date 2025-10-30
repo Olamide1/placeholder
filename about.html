@@ -9,16 +9,29 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
   </head>
   <body class="min-h-screen bg-stone-100 text-stone-900">
+    <header class="relative overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 mix-blend-multiply opacity-60 texture-paper"></div>
+      <div class="pointer-events-none absolute inset-0 noise-layer"></div>
+      <nav class="relative z-10 mx-auto flex max-w-6xl items-center justify-between px-4 py-6">
+        <a href="/" aria-label="Placeholder LLC home" class="font-extrabold tracking-tight text-2xl">
+          <span class="handwritten text-3xl">Placeholder LLC</span>
+        </a>
+        <ul class="flex gap-6 text-sm uppercase">
+          <li><a class="hover:underline" href="/experiments.html">Experiments</a></li>
+          <li><a class="hover:underline" href="/about.html">About</a></li>
+          <li><a class="hover:underline" href="/contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
     <main class="mx-auto max-w-6xl px-4 py-10">
-      <a href="/" class="underline">Home</a>
-      <h1 class="mt-6 handwritten text-4xl">About</h1>
+      <h1 class="mt-2 handwritten text-4xl flicker">About</h1>
       <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
-        <section class="md:col-span-2 rounded border border-stone-900 bg-white p-6 shadow-[6px_6px_0_0_#0c0a09]">
+        <section class="md:col-span-2 rounded border border-stone-900 bg-white p-6 shadow-[6px_6px_0_0_#0c0a09] rough-border" data-tape>
           <h2 class="handwritten text-2xl">Philosophy</h2>
           <p class="mt-3">We treat ideas like sketches. Every experiment gets a wall.</p>
           <p class="mt-2">Honest imperfection. Controlled chaos. Intelligent play.</p>
         </section>
-        <aside class="rounded border border-stone-900 bg-white p-6 shadow-[6px_6px_0_0_#0c0a09]">
+        <aside class="rounded border border-stone-900 bg-white p-6 shadow-[6px_6px_0_0_#0c0a09] rough-border" data-tape>
           <h2 class="handwritten text-xl">Notes</h2>
           <ul class="mt-2 list-disc pl-5 text-sm">
             <li>Accessible by design.</li>
@@ -28,6 +41,7 @@
         </aside>
       </div>
     </main>
+    <script src="/assets/js/animations.js" defer></script>
   </body>
   </html>
 

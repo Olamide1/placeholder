@@ -8,12 +8,17 @@
     <link rel="stylesheet" href="/assets/css/base.css" />
   </head>
   <body class="grid min-h-screen place-items-center bg-stone-100 text-stone-900">
+    <header class="fixed left-0 right-0 top-0 z-10">
+      <div class="pointer-events-none absolute inset-0 mix-blend-multiply opacity-60 texture-paper"></div>
+      <div class="pointer-events-none absolute inset-0 noise-layer"></div>
+    </header>
     <main class="text-center">
       <img src="/assets/svg/icons/question.svg" alt="?" class="mx-auto mb-4 h-8 w-8" />
-      <h1 class="handwritten text-5xl">Lost in the experiment</h1>
+      <h1 class="handwritten text-5xl flicker">Lost in the experiment</h1>
       <p class="mt-3">This page doesn't exist. Yet.</p>
       <a href="/" class="mt-6 inline-block underline">Back to canvas</a>
     </main>
+    <script src="/assets/js/animations.js" defer></script>
   </body>
   </html>
 
