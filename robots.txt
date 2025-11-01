@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
-Sitemap: https://placeholder.example.com/sitemap.xml
+Sitemap: https://placeholderllc.name.ng/sitemap.xml
 
 
