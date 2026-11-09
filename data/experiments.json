@@ -1,14 +1,47 @@
 {
   "experiments": [
-    { "title": "Schedulely", "summary": "Agentic scheduling that adapts.", "meta": "alpha", "url": "https://www.schedulely.app/" },
-    { "title": "Akọ̀wé", "summary": "AI-powered academic writing platform.", "meta": "live", "url": "https://useakowe.com/" },
-    { "title": "Nomi", "summary": "Composable flows for real support.", "meta": "research", "url": "https://ai-customer-support-eosin.vercel.app/" },
-    { "title": "PM Research Agents", "summary": "Agents that read, cluster, decide.", "meta": "lab", "url": "https://coverage.work" },
-    { "title": "Tulum", "summary": "Alternative to Loom.", "meta": "lab", "url": "https://tulum-vids.netlify.app" },
-    { "title": "Tea Shop (Lagos)", "summary": "New-age tea studio exploration.", "meta": "coming soon", "url": "#" },
-    { "title": "Documentorly", "summary": "AI-powered document generation.", "meta": "lab/collaboration", "url": "https://documentorly.com/" }
-
+    {
+      "title": "Faylo",
+      "summary": "eSIM connectivity for Africa travel. Land, scan, connected.",
+      "meta": "building",
+      "url": "https://faylo.xyz",
+      "featured": true
+    },
+    {
+      "title": "Karongo",
+      "summary": "An affordable hearing aid, in the lab.",
+      "meta": "lab",
+      "url": "#"
+    },
+    {
+      "title": "Akọ̀wé",
+      "summary": "AI-powered academic writing platform.",
+      "meta": "live",
+      "url": "https://useakowe.com/"
+    },
+    {
+      "title": "PM Research Agents",
+      "summary": "Agents that read, cluster, decide.",
+      "meta": "lab",
+      "url": "https://coverage.work"
+    },
+    {
+      "title": "Tulum",
+      "summary": "Alternative to Loom.",
+      "meta": "lab",
+      "url": "https://tulum-vids.netlify.app"
+    },
+    {
+      "title": "Tea Shop (Lagos)",
+      "summary": "New-age tea studio exploration.",
+      "meta": "coming soon",
+      "url": "#"
+    },
+    {
+      "title": "Documentorly",
+      "summary": "AI-powered document generation.",
+      "meta": "lab/collaboration",
+      "url": "https://documentorly.com/"
+    }
   ]
 }
-
-

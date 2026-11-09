@@ -1,0 +1,12 @@
+---
+# cPanel > Git Version Control deploys this on "Deploy HEAD Commit".
+# 1) Replace CPANELUSER with your cPanel username.
+# 2) Point DEPLOYPATH at the folder the domain serves (public_html for the main domain,
+#    or the addon/subdomain's document root).
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/CPANELUSER/public_html/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R index.html about.html experiments.html contact.html thanks.html 404.html $DEPLOYPATH
+    - /bin/cp sitemap.xml robots.txt favicon.svg favicon.ico apple-touch-icon.png icon-192.png icon-512.png site.webmanifest .htaccess $DEPLOYPATH
+    - /bin/cp -R assets $DEPLOYPATH
